@@ -1,0 +1,3 @@
+[submodule "souliss"]
+	path = souliss
+	url = https://github.com/souliss/souliss.git
