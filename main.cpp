@@ -3,7 +3,11 @@
 #define	NRF24PINS_INSKETCH
 #define	NRF24_RADIOEN                   RPI_V2_GPIO_P1_22				// Chip Enable Pin
 #define	NRF24_SPICS			RPI_V2_GPIO_P1_24				// SPI Chip Select Pin
-        
+
+#include "conf/nRF24/nRF24UsrCfg.h"
+
+#undef NRF24_CHANNEL
+#define NRF24_CHANNEL     	10					// Default channel to be used
 
 #include "bconf/RaspiBoard.h"
 #include "conf/nRF24rpi.h"
@@ -12,7 +16,7 @@
 #include "Souliss.h"
 
 // Define the network configuration according to your router settings
-uint8_t ip_address[4]  = {10, 0, 0, 184};
+uint8_t ip_address[4]  = {10, 0, 0, 183};
 uint8_t subnet_mask[4] = {255, 255, 255, 0};
 uint8_t ip_gateway[4]  = {10, 0, 0, 253};
 #define Gateway_address 0x6501              // The Gateway node has two address, one on the Ethernet side
@@ -39,6 +43,7 @@ void setup()
     SetAsPeerNode(Peer_address, 1); 
 }
 
+unsigned char n =1;
 void loop()
 { 
     // Here we start to play
@@ -52,7 +57,11 @@ void loop()
                 // Send data
 //                Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
 //                Send(Peer_address, 0, 0);//mInput(GARAGEDOOR_NODE1));
-                Send(Peer_address, 1, 1);//mInput(GARAGEDOOR_NODE1));
+                
+                //Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
+//                Send(Peer_address, 1, 1);//mInput(GARAGEDOOR_NODE1));
+                             
+                //Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
                 //Send(Peer_address, 1, 0);//mInput(GARAGEDOOR_NODE1));
                 //ResetInput(GARAGEDOOR_NODE1);
             }
