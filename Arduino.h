@@ -14,6 +14,7 @@
 #include <sstream>
 #include <cstring>
 #include <algorithm>
+#include <iostream>
 
 #define MAXINPIN 26
 //#define _BV(bit) (1 << (bit)) 
@@ -52,6 +53,36 @@ private:
     std::string _s;
     
 };
+
+#define HEX 1
+#define F(a) a
+
+class SerialConsole
+{
+public:
+    void print(const std::string& s, int flags = 0)
+    {
+        std::cout<<s;
+    }
+    void print(int n, int flags = 0)
+    {
+        if (flags==HEX)
+        {
+            std::cout<<std::hex;
+        }
+        else
+        {
+            std::cout<<std::dec;
+            
+        }
+        
+        std::cout<<n;
+    }
+        
+};
+
+SerialConsole Serial;
+
 
 /*
 #define B0 0

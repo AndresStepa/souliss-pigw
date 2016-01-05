@@ -1,4 +1,8 @@
+#define	SOULISS_DEBUG_INSKETCH
+#define SOULISS_DEBUG  		1
 
+#define	VNET_DEBUG_INSKETCH
+#define VNET_DEBUG  		1
 
 #define	NRF24PINS_INSKETCH
 #define	NRF24_RADIOEN                   RPI_V2_GPIO_P1_22				// Chip Enable Pin
@@ -43,36 +47,20 @@ void setup()
     SetAsPeerNode(Peer_address, 1); 
 }
 
-unsigned char n =1;
+#undef EXECUTEFAST
+#define EXECUTEFAST()	bcm2835_delay(5);
+
+//if(abs(millis()-tmr_fast) > time_base_fast)
+
 void loop()
 { 
     // Here we start to play
     EXECUTEFAST() {                     
         UPDATEFAST(); 
-        FAST_2110ms() {
-            
-            // Use Pin2 as ON/OFF command
-            //if(DigIn(4, Souliss_T2n_ToggleCmd, GARAGEDOOR_NODE1))
-            {
-                // Send data
-//                Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
-//                Send(Peer_address, 0, 0);//mInput(GARAGEDOOR_NODE1));
-                
-                //Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
-//                Send(Peer_address, 1, 1);//mInput(GARAGEDOOR_NODE1));
-                             
-                //Send(Peer_address, 0, 1);//mInput(GARAGEDOOR_NODE1));
-                //Send(Peer_address, 1, 0);//mInput(GARAGEDOOR_NODE1));
-                //ResetInput(GARAGEDOOR_NODE1);
-            }
-        } 
-     
-
         // This node does just networking, bridging the Peer node to the Ethernet network
         FAST_GatewayComms();            
     }   
 }
-
 
 int main(int argc, char** argv)
 {
